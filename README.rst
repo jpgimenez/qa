@@ -22,9 +22,9 @@ The following tools are provided:
     A wrapper around `Pyflakes, pep8 and Ned Batchelder's McCabe script.
 
 coverage.sh
-    Single script to check if a minimum test coverage is assured. We could
+    Single script to check if a minimum test coverage is assured (we could
     skip this if createzopecoverage could provide at some point this
-    information directly.
+    information directly).
 
 rebuild_i18n.sh
     Single script to synchronize i18n pot files with all translatable strings
@@ -33,7 +33,8 @@ rebuild_i18n.sh
 
 `z3c.dependencychecker`_
     Checks which imports are done and compares them to what's in setup.py and
-    warn when discovering missing or unneeded dependencies.
+    warn when discovering missing or unneeded dependencies. This is becoming
+    increasingly important with the arrive of Plone 4.3.
 
 Mostly Harmless
 ---------------
