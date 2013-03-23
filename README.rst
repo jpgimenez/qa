@@ -26,6 +26,11 @@ coverage.sh
     skip this if createzopecoverage could provide at some point this
     information directly.
 
+rebuild_i18n.sh
+    Single script to synchronize i18n pot files with all translatable strings
+    extracted form the package scripts and templates. Will also report any
+    errors and suspect untranslated messages found.
+
 `z3c.dependencychecker`_
     Checks which imports are done and compares them to what's in setup.py and
     warn when discovering missing or unneeded dependencies.
