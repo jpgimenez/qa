@@ -26,5 +26,5 @@ js-validation:
 	npm install jshint -g 2>/dev/null
 	find $(src) -type f -name *.js $(jshint_ignore) -exec jshint {} ';'
 
-validation: python-validation css-validation js-validation
+coverage-validation:
 	bin/coverage.sh $(minimum_test_coverage)
