@@ -18,7 +18,7 @@ js_ignores = ! -name jquery\*
 python-validation:
 	bin/flake8 --ignore=$(pep8_ignores) --max-complexity=$(max_complexity) $(src)
 
-css-validation: ack-install
+css-validation:
 	npm install csslint -g 2>/dev/null
 	find $(src) -type f -name *.css $(css_ignores) | xargs csslint
 
