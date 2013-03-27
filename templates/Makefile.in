@@ -1,30 +1,30 @@
 # convenience Makefile to run validation tests
-# src: source path
-# minimum_coverage: minimun test coverage allowed
-# pep8_ignores: ignore listed PEP 8 errors and warnings
+# src: source path discovered in run time
+# minimum_test_coverage: minimun test coverage allowed
+# pep8_ignore: ignore listed PEP 8 errors and warnings
 # max_complexity: maximum McCabe complexity allowed
-# css_ignores: skip file names matching find pattern (use ! -name PATTERN)
-# js_ignores: skip file names matching find pattern (use ! -name PATTERN)
+# csslint_ignore: skip file names matching find pattern (use ! -name PATTERN)
+# jshint_ignore: skip file names matching find pattern (use ! -name PATTERN)
 
 SHELL = /bin/sh
 
 src = `find . -type d | grep -m 1 "${variables:source}"`
-minimum_coverage = 80
-pep8_ignores = E501
-max_complexity = 12
-css_ignores = ! -name jquery\*
-js_ignores = ! -name jquery\*
+minimum_test_coverage = ${buildout:package-minimum-test-coverage}
+pep8_ignore = ${buildout:package-pep8-ignore}
+max_complexity = ${buildout:package-max-complexity}
+csslint_ignore = ${buildout:package-csslint-ignore}
+jshint_ignore = ${buildout:package-jshint-ignore}
 
 python-validation:
-	bin/flake8 --ignore=$(pep8_ignores) --max-complexity=$(max_complexity) $(src)
+	bin/flake8 --ignore=$(pep8_ignore) --max-complexity=$(max_complexity) $(src)
 
 css-validation:
 	npm install csslint -g 2>/dev/null
-	find $(src) -type f -name *.css $(css_ignores) | xargs csslint
+	find $(src) -type f -name *.css $(csslint_ignore) | xargs csslint
 
 js-validation:
 	npm install jshint -g 2>/dev/null
-	find $(src) -type f -name *.js $(js_ignores) -exec jshint {} ';'
+	find $(src) -type f -name *.js $(jshint_ignore) -exec jshint {} ';'
 
 validation: python-validation css-validation js-validation
-	bin/coverage.sh $(minimum_coverage)
+	bin/coverage.sh $(minimum_test_coverage)
